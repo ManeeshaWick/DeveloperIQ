@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: developeriq
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: deviq
+  template:
+    metadata:
+      labels:
+        app: deviq
+    spec:
+      containers:
+      - name: developeriqapp
+        image: gcr.io/starlit-brand-407003/developeriq/deviqimg:1.0
+        ports:
+        - containerPort: 5000 
