@@ -27,7 +27,7 @@ substitutions:
 
     _PROJECT_ID: starlit-brand-407003
     _ZONE: us-east1
-    _GKE_CLUSTER: autopilot-cluster-1
+    _GKE_CLUSTER: starlit-brand-407003-gke
 
     #_DEPLOYMENTNAME: node
     #_CONTAINERNAME: node    
