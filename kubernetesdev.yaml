@@ -1,19 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: developeriq-dev
+  name: developeriq-deployment-dev
+  labels:
+    app: developeriq
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: deviq
+      app: developeriq
   template:
     metadata:
       labels:
-        app: deviq
+        app: developeriq
+        role: rolling-update
     spec:
       containers:
-      - name: deviq-01
-        image: dylnesh/deviqimg:1.0
+      - name: developeriq
+        image: dylnesh/deviqimg:1.0 
         ports:
-        - containerPort: 5000
+        - containerPort: 5000  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: developeriq
+  name: developeriq-service-dev
+spec:
+  ports:
+  - port: 5000  
+    protocol: TCP
+    targetPort: 5000  
+  selector:
+    app: developeriq
+  type: LoadBalancer
