@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: developeriq
+  name: developeriq-prod
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: deviq
@@ -13,7 +13,7 @@ spec:
         app: deviq
     spec:
       containers:
-      - name: developeriqapp
-        image: gcr.io/starlit-brand-407003/developeriq/deviqimg:1.0
+      - name: deviq-01
+        image: dylnesh/deviqimg:1.0
         ports:
-        - containerPort: 5000 
+        - containerPort: 5000
