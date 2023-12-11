@@ -1,6 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: developeriq-dataingestion
+  labels:
+    app: developeriqdata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: developeriqdata
+  template:
+    metadata:
+      labels:
+        app: developeriqdata
+        role: rolling-update
+    spec:
+      containers:
+      - name: developeriqdata
+        image: dylnesh/deviqingest:1.0 
+ 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: developeriq-deployment-test
   labels:
     app: developeriq
@@ -17,7 +39,7 @@ spec:
     spec:
       containers:
       - name: developeriq
-        image: dylnesh/deviqimg:1.0 
+        image: dylnesh/deviqfront:1.0 
         ports:
         - containerPort: 5000  
 ---

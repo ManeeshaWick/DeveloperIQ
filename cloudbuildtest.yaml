@@ -1,14 +1,25 @@
 steps:
-  # Docker Build
+  # Docker Build for App Service
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'gcr.io/${_PROJECT_ID}/deviqimg:$SHORT_SHA', 
+           'gcr.io/${_PROJECT_ID}/deviqfront:$SHORT_SHA', 
            '.']
 
-  # Docker Push
+  # Docker Push App Service
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           'gcr.io/${_PROJECT_ID}/deviqimg:$SHORT_SHA']
+           'gcr.io/${_PROJECT_ID}/deviqfront:$SHORT_SHA']
+
+    # Docker Build for Data Ingesion Service
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA', 
+           '.']
+
+  # Docker Push Data Ingesion Service
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 
+           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA']
   
 
   - name: 'gcr.io/cloud-builders/gcloud'
