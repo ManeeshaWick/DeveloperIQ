@@ -72,7 +72,8 @@ def get_commit_stats(repo_url):
         print(f"Failed to fetch commit data: {commit_response.status_code} - {commit_response.text}")
         return None
 
-repo_url = "https://github.com/Trinea/android-open-project"
+#repo_url = "https://github.com/Trinea/android-open-project"
+repo_url = "https://github.com/practical-tutorials/project-based-learning"
 
 commit_stats = get_commit_stats(repo_url)
 if commit_stats:
