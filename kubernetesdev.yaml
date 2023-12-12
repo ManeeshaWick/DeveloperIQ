@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: developeriq-deployment-dev
+  name: deviq-deployment-dev
   labels:
     app: developeriq
 spec:
@@ -28,7 +28,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: developeriq
-  name: developeriq-service-dev
+  name: deviq-service-dev
 spec:
   ports:
   - port: 5000  
@@ -59,8 +59,6 @@ spec:
       containers:
       - name: data-ingestion
         image: VAR_IMAGE_INGEST
-        ports:
-        - containerPort: 6000  
 
 ---
 apiVersion: v1
