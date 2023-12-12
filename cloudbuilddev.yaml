@@ -58,12 +58,12 @@ steps:
   # Docker Build for Data Ingestion Service
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA']  
+           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA', './backend']  
 
   # Docker Push Data Ingestion Service
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA']
+           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA', './backend']
 
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: /bin/sh
