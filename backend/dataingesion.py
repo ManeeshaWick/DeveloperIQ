@@ -116,8 +116,8 @@ def insert_data():
     except Exception as e:
         return str(e)
 
-# repo_url = "https://github.com/Trinea/android-open-project"
-repo_url = "https://github.com/Trinea/android-common"
+repo_url = "https://github.com/Trinea/android-open-project"
+# repo_url = "https://github.com/Trinea/android-common"
 
 commit_stats = get_commit_stats(repo_url)
 if commit_stats:
