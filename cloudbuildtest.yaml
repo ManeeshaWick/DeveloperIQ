@@ -10,24 +10,22 @@ steps:
     args: ['push', 
            'gcr.io/${_PROJECT_ID}/deviqfront:$SHORT_SHA']
 
-    # Docker Build for Data Ingesion Service
+  # Docker Build for Data Ingestion Service
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA', 
-           '.']
+           'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA', './backend']  
 
-  # Docker Push Data Ingesion Service
+  # Docker Push Data Ingestion Service
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
            'gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA']
-  
 
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: /bin/sh
     args:
     - '-c'
     - |
-      sed "s|VAR_IMAGE|gcr.io/${_PROJECT_ID}/deviqimg:$SHORT_SHA|g"  kubernetestest.yaml > kubernetes.yaml
+      sed "s|VAR_IMAGE_FRONT|gcr.io/${_PROJECT_ID}/deviqfront:$SHORT_SHA|g; s|VAR_IMAGE_INGEST|gcr.io/${_PROJECT_ID}/deviqingest:$SHORT_SHA|g"  kubernetestest.yaml > kubernetes.yaml
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'kubernetes.yaml']
     env:
@@ -35,10 +33,11 @@ steps:
     - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
   
 substitutions:
-
-    _PROJECT_ID: starlit-brand-407003
-    _ZONE: us-east1
-    _GKE_CLUSTER: starlit-brand-407003-gke
+  _PROJECT_ID: starlit-brand-407003
+  _ZONE: us-east1
+  _GKE_CLUSTER: starlit-brand-407003-gke
     
 options:
-    substitution_option: 'ALLOW_LOOSE'
+  substitution_option: 'ALLOW_LOOSE'
+
+

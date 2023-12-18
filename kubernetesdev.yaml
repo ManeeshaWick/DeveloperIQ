@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deviq-deployment-dev
+  name: developeriq-deployment-dev
   labels:
     app: developeriq
 spec:
@@ -28,7 +28,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: developeriq
-  name: deviq-service-dev
+  name: developeriq-service-dev
 spec:
   ports:
   - port: 5000  
